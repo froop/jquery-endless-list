@@ -10,6 +10,7 @@
 
 	/**
 	 * 一覧の末尾以降に未読込みの行がある場合に追加する空行.
+	 * @param {jQuery} $list
 	 */
 	var NextPlaceHolder = function ($list) {
 		var CLASS_NAME = "endless-next-place";
