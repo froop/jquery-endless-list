@@ -84,6 +84,9 @@
 						$list : $list,
 						callback : appendList
 					}, scrollListener);
+
+					// スクロールのある高さになるまでリストを拡張
+					$(document).triggerHandler("scroll");
 				}
 
 				setting.afterLoad();
