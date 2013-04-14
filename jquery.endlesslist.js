@@ -87,9 +87,6 @@
 				}
 
 				setting.afterLoad();
-
-				// スクロールのある高さになるまでリストを拡張
-				$(document).triggerHandler("scroll");
 			});
 		}
 
