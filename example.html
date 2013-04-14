@@ -18,6 +18,7 @@
 	<script type="text/javascript">
 		$(function () {
 			var UNIT_COUNT = 50;
+			var DATA_COUNT = 120;
 			var $list = $("#main-list");
 			var offset = 0;
 
@@ -28,16 +29,15 @@
 					$(".endless-next-place").text("loading...");
 					setTimeout(function () {
 						var $template = $("#template .list-item");
-						var count = UNIT_COUNT;
+						var last = Math.min(offset + UNIT_COUNT, DATA_COUNT);
 						var idx;
 
-						if (offset + UNIT_COUNT > 100) count = 20;
-						for (idx = 0; idx < count; idx++) {
+						for (idx = 0; idx < last - offset; idx++) {
 							var $item = $template.clone();
-							$item.text(offset + idx);
+							$item.text(offset + idx + 1);
 							$list.append($item);
 						}
-						offset += count;
+						offset = last;
 
 						deferred.resolve();
 					}, 1000);
@@ -46,7 +46,7 @@
 				},
 
 				hasNext : function () {
-					return offset <= 100;
+					return offset < DATA_COUNT;
 				},
 
 				afterLoad : function () {
