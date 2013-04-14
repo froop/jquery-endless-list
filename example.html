@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jquery.endlesslist.js example</title>
+
+	<style>
+		.endless-next-place {
+			height: 1em;
+		}
+		#template {
+			display: none;
+		}
+	</style>
+
+	<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="jquery.endlesslist.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var UNIT_COUNT = 50;
+			var $list = $("#main-list");
+			var offset = 0;
+
+			$list.endlessList({
+				asyncLoad : function () {
+					var deferred = new $.Deferred;
+
+					$(".endless-next-place").text("loading...");
+					setTimeout(function () {
+						var $template = $("#template .list-item");
+						var count = UNIT_COUNT;
+						var idx;
+
+						if (offset + UNIT_COUNT > 100) count = 20;
+						for (idx = 0; idx < count; idx++) {
+							var $item = $template.clone();
+							$item.text(offset + idx);
+							$list.append($item);
+						}
+						offset += count;
+
+						deferred.resolve();
+					}, 1000);
+
+					return deferred.promise();
+				},
+
+				hasNext : function () {
+					return offset <= 100;
+				},
+
+				afterLoad : function () {
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<ul id="main-list"></ul>
+	<ul id="template">
+		<li class="list-item"></li>
+	</ul>
+</body>
+</html>
