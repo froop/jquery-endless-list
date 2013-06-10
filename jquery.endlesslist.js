@@ -1,7 +1,7 @@
 /*
  * jquery.endlesslist.js - jQuery plugin.
  *
- * Created by froop http://github.com/froop/jquery-endless-list
+ * Copyright (c) 2013 froop http://github.com/froop/jquery-endless-list
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 /*global jQuery, window, document */
